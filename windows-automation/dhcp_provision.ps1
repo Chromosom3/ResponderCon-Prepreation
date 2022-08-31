@@ -10,7 +10,7 @@ Restart-Service dhcpserver
 # Authorized the DHCP server in the domain
 Add-DhcpServerInDC
 #This prevents some errors that might occur where Server Manager doesn't know this is finished setting up. 
-Set-ItemProperty –Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerManager\Roles\12 –Name ConfigurationState –Value 2
+Set-ItemProperty -Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerManager\Roles\12 -Name ConfigurationState -Value 2
 
 # Get the range from the user and setup the scope.
 $start_ip = Read-Host("Please enter the starting IP address for the DHCP scope")
@@ -33,7 +33,7 @@ if ($reservation_start -match "[0-9]+.[0-9]+.[0-9]+"){
         }
         $vm_ip = $ip_space + "." + ($last_oct + $vm_number)
         $vm_name = $vm.Name
-        $vm_mac = $vm.Value
+        $vm_mac = ($vm.Value).replace(':','-')
         Add-DhcpServerv4Reservation -ScopeId $scope_ip -IPAddress $vm_ip -ClientId $vm_mac -Description "Reservation for $vm_name"
     }
 }
