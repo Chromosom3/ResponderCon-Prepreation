@@ -24,8 +24,7 @@ if ($reservation_start -match "[0-9]+.[0-9]+.[0-9]+"){
     $ip_space = $matches[0]
     # We subtract one from the last oct so that the first vm (1) will be the number we originally entered.
     $last_oct = ([int](($reservation_start.Split("."))[3]) - 1)
-    $scope_ip = $reservation_start + ".0"
-    
+    $scope_ip = $ip_space + ".0"
     foreach ($vm in $vm_info) {
         if ($vm.Name -match "-[0-9]+"){
             # Returns "-NUMBER" so we need to remove the dash with the substring method.
