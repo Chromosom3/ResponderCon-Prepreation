@@ -1,5 +1,5 @@
 # ResponderCon-Prepreation
-This repository houses all of the automation scripts/playbooks I made in support of the ResponderCon RansomCare Workshop. I worked on this project under Professor Ali Hadi of Champlain College. I worked on automating the deployment of automating an environment to facilitate a ransomware tabletop exercise. See the sections below for more information on the various scripts in this repository.
+This repository houses all of the automation scripts/playbooks I made in support of the ResponderCon RansomCare Workshop. I worked on this project under Professor Ali Hadi of Champlain College. My tasking on the project was to automate the deployment of an environment that could facilitate a ransomware tabletop exercise. I also acted in a sysadmin capacity to build and maintain systems in support of this project. See the sections below for more information on the various scripts in this repository.
 
 ## ansible
 This directory houses all the files that relate to ansible. Ansible was used to configure the Windows 10 clients in the environment. To use the files in this directory you would simply run the command `ansible-playbook -i inventory.txt -k windows-provision.yml` while in this directory. Note that the `-k` flag is the same as `--ask-pass` and is not required if you are using SSH keys. 
