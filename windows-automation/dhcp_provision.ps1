@@ -23,6 +23,7 @@ if ($reservation_start -match "[0-9]+.[0-9]+.[0-9]+"){
     # Gets the first three oct of the IP
     $ip_space = $matches[0]
     $last_oct = ([int](($reservation_start.Split("."))[3]) - 1)
+    $scope_id = $reservation_start + ".0"
     
     foreach ($vm in $vm_info) {
         if ($vm.Name -match "-[0-9]+"){
@@ -30,5 +31,6 @@ if ($reservation_start -match "[0-9]+.[0-9]+.[0-9]+"){
             $vm_number = ($matches[0]).Substring(1)
         }
         $vm_ip = $ip_space + "." + ($last_oct + $vm_number)
+        Add-DhcpServerv4Reservation -ScopeId $scope_ip -IPAddress $vm_ip -ClientId ${$vm.Value} -Description "Reservation for ${$vm.Name}"
     }
 }
