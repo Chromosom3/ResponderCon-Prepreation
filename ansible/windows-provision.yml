@@ -1,0 +1,29 @@
+---
+- name: Windows 10 ResponderCon
+  hosts: windows10
+  gather_facts: no
+  vars_prompt:
+  - name: domain_name
+    prompt: Enter the domain name
+  - name: domain_joiner_user
+    prompt: Enter the domain user account
+  - name: domain_joiner_password
+    prompt: Enter the domain user password
+  tasks:
+  - name: Adjust Power Options
+    win_power_plan:
+      name: high performance
+  - name: Join the Domain
+    win_domain_membership:
+      dns_domain_name: "{{ domain_name }}"
+      hostname: "{{ hostname }}"
+      domain_admin_user: "{{ domain_joiner_user }}"
+      domain_admin_password: "{{ domain_joiner_password }}"
+      state: domain
+    register: domain_state
+
+  - name: Reboot the workstation
+    win_reboot:
+      msg: "Rebooting to join the domain..."
+      pre_reboot_delay: 1
+    when: domain_state.reboot_required
