@@ -7,7 +7,7 @@ Install-WindowsFeature DHCP -IncludeManagementTools
 # Add the security groups required to manage DHCP.
 netsh dhcp add securitygroups
 Restart-Service dhcpserver
-# Authorized the DHCP server in the domain
+# Authorized the DHCP server in the domain.
 Add-DhcpServerInDC
 #This prevents some errors that might occur where Server Manager doesn't know this is finished setting up. 
 Set-ItemProperty -Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerManager\Roles\12 -Name ConfigurationState -Value 2
@@ -20,7 +20,7 @@ Add-DhcpServerv4Scope -Name "DHCP Scope" -StartRange $start_ip -EndRange $end_ip
 $vm_info = Import-CSV .\vm_info.csv
 $reservation_start = Read-Host("Please enter the starting IP reservation")
 if ($reservation_start -match "[0-9]+.[0-9]+.[0-9]+"){
-    # Gets the first three oct of the IP
+    # Gets the first three oct of the IP.
     $ip_space = $matches[0]
     # We subtract one from the last oct so that the first vm (1) will be the number we originally entered.
     $last_oct = ([int](($reservation_start.Split("."))[3]) - 1)
