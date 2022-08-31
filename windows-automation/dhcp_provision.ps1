@@ -15,7 +15,7 @@ Set-ItemProperty –Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerM
 # Get the range from the user and setup the scope.
 $start_ip = Read-Host("Please enter the starting IP address for the DHCP scope")
 $end_ip = Read-Host("Please enter the ending IP address for the DHCP scope")
-Add-DhcpServerv4Scope -Name "DHCP Scope" -StartRange $start_ip -EndRange $end_ip -SubnetMask 255.255.255.0 -LeaseDuration 0.00:30:00
+Add-DhcpServerv4Scope -Name "DHCP Scope" -StartRange $start_ip -EndRange $end_ip -SubnetMask 255.255.255.0 -LeaseDuration 0.00:05:00
 # Setup reservations on the server.
 $vm_info = Import-CSV .\vm_info.csv
 $reservation_start = Read-Host("Please enter the starting IP reservation")
