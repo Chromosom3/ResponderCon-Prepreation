@@ -1,0 +1,4 @@
+#TYPE System.Collections.DictionaryEntry
+"Name","Key","Value"
+"VM-1","VM-1","00:00:00:00:00:01"
+"VM-2","VM-2","00:00:00:00:00:02"
