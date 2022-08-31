@@ -32,6 +32,8 @@ if ($reservation_start -match "[0-9]+.[0-9]+.[0-9]+"){
             $vm_number = ($matches[0]).Substring(1)
         }
         $vm_ip = $ip_space + "." + ($last_oct + $vm_number)
-        Add-DhcpServerv4Reservation -ScopeId $scope_ip -IPAddress $vm_ip -ClientId ${$vm.Value} -Description "Reservation for ${$vm.Name}"
+        $vm_name = $vm.Name
+        $vm_mac = $vm.Value
+        Add-DhcpServerv4Reservation -ScopeId $scope_ip -IPAddress $vm_ip -ClientId $vm_mac -Description "Reservation for $vm_name"
     }
 }
