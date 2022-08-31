@@ -22,6 +22,7 @@ $reservation_start = Read-Host("Please enter the starting IP reservation")
 if ($reservation_start -match "[0-9]+.[0-9]+.[0-9]+"){
     # Gets the first three oct of the IP
     $ip_space = $matches[0]
+    # We subtract one from the last oct so that the first vm (1) will be the number we originally entered.
     $last_oct = ([int](($reservation_start.Split("."))[3]) - 1)
     $scope_id = $reservation_start + ".0"
     
