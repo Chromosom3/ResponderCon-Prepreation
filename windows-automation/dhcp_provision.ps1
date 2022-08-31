@@ -16,3 +16,19 @@ Set-ItemProperty –Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerM
 $start_ip = Read-Host("Please enter the starting IP address for the DHCP scope")
 $end_ip = Read-Host("Please enter the ending IP address for the DHCP scope")
 Add-DhcpServerv4Scope -Name "DHCP Scope" -StartRange $start_ip -EndRange $end_ip -SubnetMask 255.255.255.0 -LeaseDuration 0.00:30:00
+# Setup reservations on the server.
+$vm_info = Import-CSV .\vm_info.csv
+$reservation_start = Read-Host("Please enter the starting IP reservation")
+if ($reservation_start -match "[0-9]+.[0-9]+.[0-9]+"){
+    # Gets the first three oct of the IP
+    $ip_space = $matches[0]
+    $last_oct = ([int](($reservation_start.Split("."))[3]) - 1)
+    
+    foreach ($vm in $vm_info) {
+        if ($vm.Name -match "-[0-9]+"){
+            # Returns "-NUMBER" so we need to remove the dash with the substring method.
+            $vm_number = ($matches[0]).Substring(1)
+        }
+        $vm_ip = $ip_space + "." + ($last_oct + $vm_number)
+    }
+}
