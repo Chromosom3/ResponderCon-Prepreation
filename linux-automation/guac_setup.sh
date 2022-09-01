@@ -43,6 +43,7 @@ mv guacamole-auth-jdbc-1.4.0/mysql/guacamole-auth-jdbc-mysql-1.4.0.jar /etc/guac
 #Database commands
 read -p "You must set a mysql root password: " SQL_ROOT_PASS
 read -p "You must set a password for the guac_user account: " SQL_GUAC_PASS
+# MySQL is broken
 mysql -u root <<-EOF
 UPDATE mysql.user SET Password=PASSWORD('$SQL_ROOT_PASS') WHERE User='root';
 DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
