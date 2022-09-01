@@ -10,7 +10,7 @@ apt install build-essential libcairo2-dev libjpeg-turbo8-dev \
     freerdp2-dev libssh2-1-dev libtelnet-dev libwebsockets-dev \
     libpulse-dev libvorbis-dev libwebp-dev libssl-dev \
     libpango1.0-dev libswscale-dev libavcodec-dev libavutil-dev \
-    libavformat-dev
+    libavformat-dev -y
 cd ~
 wget https://dlcdn.apache.org/guacamole/1.4.0/source/guacamole-server-1.4.0.tar.gz
 tar -xvf guacamole-server-1.4.0.tar.gz
@@ -24,14 +24,14 @@ systemctl enable guacd --now
 mkdir -p /etc/guacamole/{extensions,lib}
 
 # Guacamole Web Client
-apt install tomcat9 tomcat9-admin tomcat9-common tomcat9-user
+apt install tomcat9 tomcat9-admin tomcat9-common tomcat9-user -y
 cd ~
 wget https://dlcdn.apache.org/guacamole/1.4.0/binary/guacamole-1.4.0.war
 sudo mv guacamole-1.4.0.war /var/lib/tomcat9/webapps/guacamole.war
 sudo systemctl restart tomcat9 guacd
 
 # Backend DB for the Web Client
-apt install mariadb-server
+apt install mariadb-server -y
 cd ~ 
 wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.26.tar.gz
 tar -xf mysql-connector-java-8.0.26.tar.gz
