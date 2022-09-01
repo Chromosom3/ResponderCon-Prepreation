@@ -12,23 +12,24 @@ apt install build-essential libcairo2-dev libjpeg-turbo8-dev \
     libpango1.0-dev libswscale-dev libavcodec-dev libavutil-dev \
     libavformat-dev -y
 cd ~
-wget https://dlcdn.apache.org/guacamole/1.4.0/source/guacamole-server-1.4.0.tar.gz
+wget https://downloads.apache.org/guacamole/1.4.0/source/guacamole-server-1.4.0.tar.gz
 tar -xvf guacamole-server-1.4.0.tar.gz
 cd guacamole-server-1.4.0
-./configure --with-init-dir=/etc/init.d --enable-allow-freerdp-snapshots
+CFLAGS=-Wno-error ./configure --with-init-dir=/etc/init.d --enable-allow-freerdp-snapshots
 make
 make install
 ldconfig
 systemctl daemon-reload
-systemctl enable guacd --now
+systemctl start guacd
+systemctl enable guacd
 mkdir -p /etc/guacamole/{extensions,lib}
 
 # Guacamole Web Client
 apt install tomcat9 tomcat9-admin tomcat9-common tomcat9-user -y
 cd ~
 wget https://dlcdn.apache.org/guacamole/1.4.0/binary/guacamole-1.4.0.war
-sudo mv guacamole-1.4.0.war /var/lib/tomcat9/webapps/guacamole.war
-sudo systemctl restart tomcat9 guacd
+mv guacamole-1.4.0.war /var/lib/tomcat9/webapps/guacamole.war
+systemctl restart tomcat9 guacd
 
 # Backend DB for the Web Client
 apt install mariadb-server -y
@@ -88,4 +89,4 @@ ldap-search-bind-password:$LDAP_PASSWORD
 " > /etc/guacamole/guacamole.properties
 
 # All Done... lets restart some services to apply settings
-sudo systemctl restart tomcat9 guacd mysql
+systemctl restart tomcat9 guacd mysql
