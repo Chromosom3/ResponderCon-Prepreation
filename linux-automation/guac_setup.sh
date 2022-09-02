@@ -57,9 +57,9 @@ EOF
 # End of DB commands
 cd guacamole-auth-jdbc-1.4.0/mysql/schema
 # Should remove the hard coded guacamole_db database name and change to a variable.
-cat *.sql | mysql -u root guacamole_db
-
+cat *.sql | mysql -u root -p guacamole_db
 # Backend LDAP connection for the webclient
+cd ~
 wget https://dlcdn.apache.org/guacamole/1.4.0/binary/guacamole-auth-ldap-1.4.0.tar.gz
 tar -xf guacamole-auth-ldap-1.4.0.tar.gz
 sudo cp guacamole-auth-ldap-1.4.0/guacamole-auth-ldap-1.4.0.jar /etc/guacamole/extensions/
