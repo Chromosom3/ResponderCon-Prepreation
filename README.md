@@ -10,6 +10,11 @@ This is the inventory file used by ansible for this deployment. This inventory f
 ### windows-provision.yml
 This file is the playbook used to provision the Windows 10 workstations. The playbook simply names and joins the system to the domain and changes the power settings to ensure the system is always awake for future playbooks. 
 
+## linux-automation
+This houses all the files designed to be run on a Linux host in the environment. Ideally, scripts in this directory are intended to fully build the services required for the system to operate in the workshop environment.
+### guac_setup.sh
+This script will fully build the Apache Guacamole server. This was tested on Ubuntu 22.04. The script will require some user input to work correctly. Specifically, you will need to enter a password for the mysql root user and the guacamole sql user. Additionally, when propted for a password after entering the previous two use the root password.
+
 ## vm-provisioning
 The `vm-provisioning` directory stores all the files pertaining to the automatic creation of virtual machines on ESXi. These scripts were designed to run on a single ESXi server with no vCenter Server Appliance running. This means some functionality of the vSphere environment was not present. For this reason, some creative approaches were taken. 
 ### bulk-vms.ps1
