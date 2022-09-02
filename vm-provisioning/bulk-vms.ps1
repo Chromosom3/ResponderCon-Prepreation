@@ -8,7 +8,7 @@ $esxi_ip = Read-Host "Please enter the server IP address"
 $esxi_account = Get-Credential -Message "Please enter your ESXi Credentials"
 # VM Settings
 $datastore = "vm-datastore"
-$CPUs = 4
+$CPUs = 2
 $RAM = 8
 $Network = "VS0-ResponderCon"
 $GuestID = "windows9_64Guest"  # Use '[VMware.Vim.VirtualMachineGuestOsIdentifier].GetEnumValues()' to get list
