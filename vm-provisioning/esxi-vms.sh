@@ -11,7 +11,7 @@ cd /vmfs/volumes/vm-datastore
 mkdir bulk-vms
 original_disk="$vm_template/$vm_template.vmdk"
 #echo "$original_disk"
-END=6
+END=33
 for vm in $(seq 1 $END)
 do
     vm_name="$vm_base_name$vm"
