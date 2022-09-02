@@ -1,0 +1,7 @@
+---
+- name: Windows 10 Renew IP
+  hosts: windows10
+  gather_facts: no
+  tasks:
+  - name: Renewing IP address
+    ansible.windows.win_command: ipconfig /renew
