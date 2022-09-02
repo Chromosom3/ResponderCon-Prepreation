@@ -4,10 +4,10 @@
 # Author: Dylan 'Chromosom3' Navarro
 # Description: Used to clone virtual disks in bulk. Intended to be run on the ESXi server.
 
-vm_template="DEV-Win10-Template"
-vm_base_name="NewVM-"
+vm_template="PRD-Win10-Template"
+vm_base_name="PRD-Win10-"
 
-cd /vmfs/volumes/datastore1
+cd /vmfs/volumes/vm-datastore
 mkdir bulk-vms
 original_disk="$vm_template/$vm_template.vmdk"
 #echo "$original_disk"

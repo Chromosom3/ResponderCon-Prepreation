@@ -7,12 +7,12 @@
 $esxi_ip = Read-Host "Please enter the server IP address"
 $esxi_account = Get-Credential -Message "Please enter your ESXi Credentials"
 # VM Settings
-$datastore = "datastore1"
+$datastore = "vm-datastore"
 $CPUs = 4
 $RAM = 8
-$Network = "VM Network (LAN)"
+$Network = "VS0-ResponderCon"
 $GuestID = "windows9_64Guest"  # Use '[VMware.Vim.VirtualMachineGuestOsIdentifier].GetEnumValues()' to get list
-$disk_location = "[datastore1] bulk-vms"
+$disk_location = "[vm-datastore] bulk-vms"
 # User Inputs
 $name = Read-Host "Please enter the base name for the VMs you'd like to make"
 [uint16]$vm_count = Read-Host "How many VMs do you need provisioned?"
