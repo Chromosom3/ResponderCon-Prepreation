@@ -17,6 +17,7 @@ $disk_location = "[vm-datastore] bulk-vms"
 $name = Read-Host "Please enter the base name for the VMs you'd like to make"
 [uint16]$vm_count = Read-Host "How many VMs do you need provisioned?"
 
+Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false
 Connect-VIServer -Server $esxi_ip -Credential $esxi_account
 $vmhost = Get-VMHost -Name $esxi_ip
 
