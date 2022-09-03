@@ -12,5 +12,5 @@ $number_of_users += 1
 for (0 -lt $number_of_users; $number_of_users = $number_of_users - 1){
     $username = "user" + $number_of_users
     Write-Host("Making user $username...")
-    New-ADUser -SamAccountName $username -Name $username -Path $OU_Location -AccountPassword (ConvertTo-SecureString -AsPlainText $defaultPass -Force)
+    New-ADUser -Enabled $True -SamAccountName $username -Name $username -Path $OU_Location -AccountPassword (ConvertTo-SecureString -AsPlainText $defaultPass -Force)
 }
