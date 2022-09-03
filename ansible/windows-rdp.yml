@@ -4,6 +4,10 @@
   gather_facts: no
   tasks:
   - name: Ensuring RDP is Enabled
-    ansible.windows.win_powershell: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -value 0
+    ansible.windows.win_powershell: 
+      script: | 
+      Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -value 0
   - name: Adding Domain Users to RDP
-    ansible.windows.win_powershell: Add-LocalGroupMember -Group "Remote Desktop Users" -Member "DOMAIN\Domain Users"
+    ansible.windows.win_powershell: 
+      script: |
+      Add-LocalGroupMember -Group "Remote Desktop Users" -Member "DOMAIN\Domain Users"
