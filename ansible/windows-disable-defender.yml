@@ -11,7 +11,7 @@
     win_shell: |
               New-Item "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "Real-Time Protection" -Type KEY -Force
 
-  - name: Disable Realtime Monitoring
+  - name: Disable Realtime Monitoring via Key
     win_shell: |
               Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" -Name "DisableRealtimeMonitoring" -Type DWORD -Value 1 -Force
 
@@ -21,4 +21,8 @@
 
   - name: Add C Drive Exclusion
     win_shell: |
-              Add-MpPreference -ExclusionPath \"C:\\\"
+              Add-MpPreference -ExclusionPath "C:"
+
+  - name: Disable Realtime Monitoring via MpPreference
+    win_shell: |
+              Set-MpPreference -DisableRealtimeMonitoring $true
