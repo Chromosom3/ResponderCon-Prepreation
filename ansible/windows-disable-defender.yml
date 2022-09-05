@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
   - name: Disable Anti-Spyware
-    win_shell: | 
+    win_shell: |
               Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWORD -Value 1 -Force
 
   - name: Make Real-Time Protection Key
@@ -21,4 +21,4 @@
 
   - name: Add C Drive Exclusion
     win_shell: |
-              Add-MpPreference -ExclusionPath "C:\"
+              Add-MpPreference -ExclusionPath \"C:\\\"
