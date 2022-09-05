@@ -4,16 +4,21 @@
   gather_facts: no
   tasks:
   - name: Disable Anti-Spyware
-    win_shell: Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWORD -Value 1 -Force
+    win_shell: | 
+              Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWORD -Value 1 -Force
 
   - name: Make Real-Time Protection Key
-    win_shell: New-Item "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "Real-Time Protection" -Type KEY -Force
+    win_shell: |
+              New-Item "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "Real-Time Protection" -Type KEY -Force
 
   - name: Disable Realtime Monitoring
-    win_shell: Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" -Name "DisableRealtimeMonitoring" -Type DWORD -Value 1 -Force
+    win_shell: |
+              Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" -Name "DisableRealtimeMonitoring" -Type DWORD -Value 1 -Force
 
   - name: Disable Sample Submissions
-    win_shell: Set-MpPreference -SubmitSamplesConsent 0
+    win_shell: |
+              Set-MpPreference -SubmitSamplesConsent 0
 
   - name: Add C Drive Exclusion
-    win_shell: Add-MpPreference -ExclusionPath "C:\"
+    win_shell: |
+              Add-MpPreference -ExclusionPath "C:\"
