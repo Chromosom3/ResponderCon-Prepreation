@@ -1,5 +1,5 @@
 ---
-- name: Windows 10 Remote Desktop Setup
+- name: Windows 10 Group Membership
   hosts: windows10
   gather_facts: no
   tasks:
