@@ -1,0 +1,7 @@
+---
+- name: Windows 10 Remote Desktop Setup
+  hosts: windows10
+  gather_facts: no
+  tasks:
+  - name: Adding Domain Users to Local Admin
+    win_shell: Add-LocalGroupMember -Group "Administrators" -Member "DOMAIN\Domain Users"
