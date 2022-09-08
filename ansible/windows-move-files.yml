@@ -1,0 +1,7 @@
+---
+- name: Windows 10 Move User Files
+  hosts: windows10
+  gather_facts: no
+  tasks:
+  - name: Move-Item
+    win_shell: Move-Item -Path C:\Users\Windows10\Desktop\* -Destination C:\Users\Public\Desktop
