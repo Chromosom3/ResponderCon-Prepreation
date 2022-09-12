@@ -1,0 +1,5 @@
+# linux-automation
+This houses all the files designed to be run on a Linux host in the environment. Ideally, scripts in this directory are intended to fully build the services required for the system to operate in the workshop environment.
+
+## guac_setup.sh
+This script will fully build the Apache Guacamole server. This was tested on Ubuntu 22.04. The script will require some user input to work correctly. Specifically, you will need to enter a password for the MySQL root user and the guacamole SQL user. Additionally, when prompted for a password after entering the previous two use the root password. In the future, I would like to automate the process of creating RDP sessions and adding users to those sessions. That seems like it would be a SQL automation task as Guacamole stores most of, if not all, the data in the SQL database. 
