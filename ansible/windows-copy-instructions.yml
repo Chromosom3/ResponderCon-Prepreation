@@ -1,0 +1,9 @@
+---
+- name: Windows 10 Deploy Instructions
+  hosts: windows10
+  gather_facts: no
+  tasks:
+  - name: Copy ReadMe
+    copy:
+      src: readme.txt
+      dest: 'C:\Users\Public\Desktop\readme.txt

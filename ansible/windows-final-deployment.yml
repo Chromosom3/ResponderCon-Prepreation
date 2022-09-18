@@ -1,0 +1,35 @@
+---
+- name: Windows 10 Final Configuration Changes
+  hosts: windows10
+  gather_facts: no
+  tasks:
+  - name: Copy 7zip
+    copy:
+      src: 7zip.exe
+      dest: 'C:\Users\Public\Desktop\7zip.exe'
+  - name: Install 7ip
+    win_shell: C:\Users\Public\Desktop\7zip.exe /S
+  - name: Remove Chainsaw
+    win_shell: Remove-Item -Recurse -Force C:\Users\Public\Desktop\chainsaw
+    ignore_errors: yes
+  - name: Remove Agent 2
+    win_shell: Remove-Item -Recurse -Force C:\Users\Public\Desktop\agent2.exe
+    ignore_errors: yes
+  - name: Copy Agent X
+    copy:
+      src: agentx.exe
+      dest: 'C:\Users\Public\Desktop\agentx.exe'
+  - name: hayabusa.zip copy
+    copy:
+      src: hayabusa.zip
+      dest: 'C:\Users\Public\Desktop\hayabusa.zip'
+  - name: Hayabusa Unzip
+    win_shell: Expand-Archive -Path C:\Users\Public\Desktop\hayabusa.zip -DestinationPath C:\Users\Public\Desktop\hayabusa
+  - name: folderchangesview.zip copy
+    copy:
+      src: folderchangesview.zip
+      dest: 'C:\Users\Public\Desktop\folderchangesview.zip'
+  - name: folderchangesview Unzip
+    win_shell: Expand-Archive -Path C:\Users\Public\Desktop\folderchangesview.zip -DestinationPath C:\Users\Public\Desktop\folderchangesview
+  - name: Volume Shadow Copy
+    win_shell: C:\Users\Public\Desktop\create_vsc.ps1
